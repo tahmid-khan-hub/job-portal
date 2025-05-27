@@ -1,29 +1,46 @@
 import React from "react";
+import { Link } from "react-router";
 
-const JobCard = ({job}) => {
-
-    const {title, location, jobType, category, description, company} = job;
+const JobCard = ({ job }) => {
+  const {
+    title,
+    location,
+    description,
+    company,
+    company_logo,
+    requirements,
+    salaryRange,
+    _id,
+  } = job;
 
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
-      <figure>
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          alt="Shoes"
-        />
-      </figure>
+      <div className="flex gap-2">
+        <figure>
+          <img src={company_logo} className="w-16" alt="" />
+        </figure>
+        <div>
+            <h3 className="text-2xl">{company}</h3>
+            <p>{location}</p>
+        </div>
+      </div>
       <div className="card-body">
         <h2 className="card-title">
           {title}
           <div className="badge badge-secondary">NEW</div>
         </h2>
-        <p>
-          A card component has a figure, a body part, and inside body there are
-          title and actions parts
+        <p>Salary: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}</p>
+        <p className="mb-5">
+          {description}
         </p>
+        <div className="card-actions ">
+            {
+                requirements.map((skill, index) => <div key={index} className="badge badge-outline">{skill}</div>)
+            }
+        </div>
+
         <div className="card-actions justify-end">
-          <div className="badge badge-outline">Fashion</div>
-          <div className="badge badge-outline">Products</div>
+            <Link to={`/jobs/${_id}`}><button className="btn btn-primary mt-5">Apply Now</button></Link>
         </div>
       </div>
     </div>
