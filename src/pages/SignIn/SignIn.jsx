@@ -2,6 +2,7 @@ import React, { use } from "react";
 import loginLottie from '../../assets/lotties/login.json'
 import Lottie from "lottie-react";
 import { AuthContext } from "../../contexts/AuthContext";
+import SocialLogin from "../Shared/SocialLogin";
 
 const SignIn = () => {
 
@@ -55,6 +56,7 @@ const SignIn = () => {
 
               <button className="btn btn-neutral mt-4">Sign In</button>
             </form>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>
