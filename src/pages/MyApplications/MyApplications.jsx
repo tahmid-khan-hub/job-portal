@@ -9,11 +9,14 @@ const MyApplications = () => {
 
     const {user} = UseAuth();
 
+    // firebase provided us a access token
+    console.log('token from firebase', user.accessToken);
+
     return (
         <div>
             <ApplicationStats></ApplicationStats>
             <Suspense fallback={'loading'}>
-                <ApplicationList myApplicationsPromise = {myApplicationsPromise(user.email)}></ApplicationList>
+                <ApplicationList myApplicationsPromise = {myApplicationsPromise(user.email, user.accessToken)}></ApplicationList>
             </Suspense>
         </div>
     );
