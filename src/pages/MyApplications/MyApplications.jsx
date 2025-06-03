@@ -2,12 +2,13 @@ import React, { Suspense } from 'react';
 import ApplicationStats from './ApplicationStats';
 import ApplicationList from './ApplicationList';
 import UseAuth from '../../hooks/UseAuth';
-import { myApplicationsPromise } from '../../api/applicationsApi';
+import useApplicationApi from '../../api/useApplicationApi';
 
 
 const MyApplications = () => {
 
     const {user} = UseAuth();
+    const {myApplicationsPromise} = useApplicationApi();
 
     // firebase provided us a access token
     console.log('token from firebase', user.accessToken);
@@ -16,7 +17,7 @@ const MyApplications = () => {
         <div>
             <ApplicationStats></ApplicationStats>
             <Suspense fallback={'loading'}>
-                <ApplicationList myApplicationsPromise = {myApplicationsPromise(user.email, user.accessToken)}></ApplicationList>
+                <ApplicationList myApplicationsPromise = {myApplicationsPromise(user.email)}></ApplicationList>
             </Suspense>
         </div>
     );
